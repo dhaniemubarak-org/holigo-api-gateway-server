@@ -15,6 +15,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
+import id.holigo.services.common.model.OauthDto;
 import id.holigo.services.holigoapigatewayserver.services.OauthService;
 import id.holigo.services.holigoapigatewayserver.web.validators.RouterValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -40,10 +41,12 @@ public class AuthorizationFilter implements GatewayFilter {
                 return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
             }
 
+            OauthDto oauthDto = new OauthDto();
             final String token = this.getAuthHeader(request);
             log.info("Token in filter -> {}", token);
             try {
-                if (!oauthService.isValid(token)) {
+                oauthDto = oauthService.getOauth(token);
+                if (!oauthDto.isValid()) {
                     log.info("token invalid!");
                     return this.onError(exchange, "Unauthorization", HttpStatus.UNAUTHORIZED);
                 }
@@ -51,15 +54,16 @@ public class AuthorizationFilter implements GatewayFilter {
                 log.info("invalid catch");
                 return this.onError(exchange, "Unauthorization", HttpStatus.UNAUTHORIZED);
             }
-            this.populateRequestWithHeaders(exchange);
+            log.info("Exchange is mutate ...");
+            this.populateRequestWithHeaders(exchange, oauthDto);
             return chain.filter(exchange);
         }
-        System.out.println("No match");
+        log.info("Open");
         return chain.filter(exchange);
     }
 
-    private void populateRequestWithHeaders(ServerWebExchange exchange) {
-        exchange.getRequest().mutate().header("user_id", "3").build();
+    private void populateRequestWithHeaders(ServerWebExchange exchange, OauthDto oauthDto) {
+        exchange.getRequest().mutate().header("user_id", oauthDto.getSubject()).build();
     }
 
     private Mono<Void> onError(ServerWebExchange exchange, String message, HttpStatus httpStatus) {

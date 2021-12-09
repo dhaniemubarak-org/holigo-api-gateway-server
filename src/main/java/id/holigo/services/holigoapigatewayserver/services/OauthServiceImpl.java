@@ -27,7 +27,7 @@ public class OauthServiceImpl implements OauthService {
     private final ObjectMapper objectMapper;
 
     @Override
-    public boolean isValid(String token) throws JsonMappingException, JsonProcessingException, JMSException {
+    public OauthDto getOauth(String token) throws JsonMappingException, JsonProcessingException, JMSException {
         OauthDto oauthDto = new OauthDto();
         oauthDto.setToken(token);
         log.info("Init");
@@ -51,7 +51,7 @@ public class OauthServiceImpl implements OauthService {
         log.info("Message receive -> {}", received.getBody(String.class));
         OauthDto result = objectMapper.readValue(received.getBody(String.class), OauthDto.class);
         log.info("Result -> {}", result);
-        return result.isValid();
+        return result;
     }
 
 }
