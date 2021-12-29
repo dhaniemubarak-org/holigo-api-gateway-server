@@ -34,6 +34,13 @@ public class RouteConfig {
                                                 .path("/api/v1/prepaid/pulsa/products**", "/api/v1/prepaid/pulsa/fare",
                                                                 "/api/v1/prepaid/pulsa/book")
                                                 .uri("lb://holigo-prepaid-pulsa-service"))
+                                .route("holigo-product-service-prepaid",
+                                                r -> r.path("/api/v1/prepaid**").uri("lb://holigo-product-service"))
+                                .route("holigo-product-service-postpaid",
+                                                r -> r.path("/api/v1/postpaid**").uri("lb://holigo-product-service"))
+                                .route("holigo-transaction-service",
+                                                r -> r.path("/api/v1/transactions**")
+                                                                .uri("lb://holigo-transaction-service"))
                                 .build();
         }
 }
