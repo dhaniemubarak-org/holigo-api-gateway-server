@@ -45,6 +45,9 @@ public class RouteConfig {
                                 .route("holigo-transaction-service",
                                                 r -> r.path("/api/v1/transactions**")
                                                                 .uri("lb://holigo-transaction-service"))
+                                .route("holigo-payment-method-service",
+                                                r -> r.path("/api/v1/payment_methods")
+                                                                .uri("lb://holigo-payment-method-service"))
                                 .build();
         }
 }
