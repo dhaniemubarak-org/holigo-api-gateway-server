@@ -19,6 +19,10 @@ public class RouteConfig {
                 return builder.routes().route("holigo-otp-service",
                                 r -> r.path("/api/v1/otp/register", "/api/v1/otp/login", "/api/v1/otp/register/*")
                                                 .uri("lb://holigo-otp-service"))
+                                .route("holigo-otp-service-reset-pin",
+                                                r -> r.path("/api/v1/otp/resetPin")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-otp-service"))
                                 .route("holigo-oauth-service-login",
                                                 r -> r.path("/api/v1/login").uri("lb://holigo-oauth-service"))
                                 .route("holigo-oauth-service-test",
