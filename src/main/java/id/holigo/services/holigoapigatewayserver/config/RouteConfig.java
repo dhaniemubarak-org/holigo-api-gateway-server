@@ -37,16 +37,23 @@ public class RouteConfig {
                                 .route("holigo-prepaid-pulsa-service", r -> r
                                                 .path("/api/v1/prepaid/pulsa/products**", "/api/v1/prepaid/pulsa/fare",
                                                                 "/api/v1/prepaid/pulsa/book")
+                                                .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-pulsa-service"))
                                 .route("holigo-product-service-prepaid",
-                                                r -> r.path("/api/v1/prepaid**").uri("lb://holigo-product-service"))
+                                                r -> r.path("/api/v1/prepaid**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-product-service"))
                                 .route("holigo-product-service-postpaid",
-                                                r -> r.path("/api/v1/postpaid**").uri("lb://holigo-product-service"))
+                                                r -> r.path("/api/v1/postpaid**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-product-service"))
                                 .route("holigo-transaction-service",
                                                 r -> r.path("/api/v1/transactions**")
+                                                                .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-transaction-service"))
                                 .route("holigo-payment-method-service",
                                                 r -> r.path("/api/v1/payment_methods")
+                                                                .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-payment-method-service"))
                                 .build();
         }
