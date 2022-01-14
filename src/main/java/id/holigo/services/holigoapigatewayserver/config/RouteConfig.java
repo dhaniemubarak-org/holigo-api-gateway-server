@@ -51,10 +51,14 @@ public class RouteConfig {
                                                 r -> r.path("/api/v1/transactions**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-transaction-service"))
-                                .route("holigo-payment-method-service",
+                                .route("holigo-payment-service-payment_method",
                                                 r -> r.path("/api/v1/payment_methods")
                                                                 .filters(f -> f.filter(authorizationFilter))
-                                                                .uri("lb://holigo-payment-method-service"))
+                                                                .uri("lb://holigo-payment-service"))
+                                .route("holigo-payment-service",
+                                                r -> r.path("/api/v1/payments", "/api/v1/payments**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-payment-service"))
                                 .build();
         }
 }
