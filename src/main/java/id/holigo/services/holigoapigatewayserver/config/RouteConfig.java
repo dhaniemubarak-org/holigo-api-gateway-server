@@ -39,6 +39,23 @@ public class RouteConfig {
                                                                 "/api/v1/prepaid/pulsa/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-pulsa-service"))
+                                .route("holigo-prepaid-electricities-service", r -> r
+                                                .path("/api/v1/prepaid/pln/products**", "/api/v1/prepaid/pln/fare",
+                                                                "/api/v1/prepaid/pln/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-prepaid-electricities-service"))
+                                .route("holigo-prepaid-ewallet-service", r -> r
+                                                .path("/api/v1/prepaid/ewallet**", "/api/v1/prepaid/ewallet/products**",
+                                                                "/api/v1/prepaid/ewallet/fare",
+                                                                "/api/v1/prepaid/ewallet/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-prepaid-ewallet-service"))
+                                .route("holigo-prepaid-games-service", r -> r
+                                                .path("/api/v1/prepaid/games**", "/api/v1/prepaid/games/products**",
+                                                                "/api/v1/prepaid/games/fare",
+                                                                "/api/v1/prepaid/games/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-prepaid-games-service"))
                                 .route("holigo-product-service-prepaid",
                                                 r -> r.path("/api/v1/prepaid**")
                                                                 .filters(f -> f.filter(authorizationFilter))
