@@ -40,8 +40,8 @@ public class RouteConfig {
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-pulsa-service"))
                                 .route("holigo-prepaid-electricities-service", r -> r
-                                                .path("/api/v1/prepaid/PLNPRA/products**", "/api/v1/prepaid/PLNPRA/fare",
-                                                                "/api/v1/prepaid/PLNPRA/book")
+                                                .path("/api/v1/prepaid/PLNPRE/products**", "/api/v1/prepaid/PLNPRE/fare",
+                                                                "/api/v1/prepaid/PLNPRE/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-electricities-service"))
                                 .route("holigo-prepaid-ewallet-service", r -> r
