@@ -40,7 +40,8 @@ public class RouteConfig {
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-pulsa-service"))
                                 .route("holigo-prepaid-electricities-service", r -> r
-                                                .path("/api/v1/prepaid/PLNPRE/products**", "/api/v1/prepaid/PLNPRE/fare",
+                                                .path("/api/v1/prepaid/PLNPRE/products**",
+                                                                "/api/v1/prepaid/PLNPRE/fare",
                                                                 "/api/v1/prepaid/PLNPRE/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-electricities-service"))
@@ -56,6 +57,12 @@ public class RouteConfig {
                                                                 "/api/v1/prepaid/GAME/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-prepaid-games-service"))
+                                .route("holigo-postpaid-pdam-service", r -> r
+                                                .path("/api/v1/postpaid/PAM**", "/api/v1/postpaid/PAM/products**",
+                                                                "/api/v1/postpaid/PAM/fare",
+                                                                "/api/v1/postpaid/PAM/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-postpaid-pdam-service"))
                                 .route("holigo-product-service-prepaid",
                                                 r -> r.path("/api/v1/prepaid**")
                                                                 .filters(f -> f.filter(authorizationFilter))
