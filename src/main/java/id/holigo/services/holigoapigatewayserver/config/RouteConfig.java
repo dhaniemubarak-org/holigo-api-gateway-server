@@ -76,7 +76,7 @@ public class RouteConfig {
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-transaction-service"))
                                 .route("holigo-payment-service-payment_method",
-                                                r -> r.path("/api/v1/payment_methods")
+                                                r -> r.path("/api/v1/paymentMethods")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-payment-service"))
                                 .route("holigo-payment-service",
