@@ -63,7 +63,7 @@ public class AuthorizationFilter implements GatewayFilter {
     }
 
     private void populateRequestWithHeaders(ServerWebExchange exchange, OauthDto oauthDto) {
-        exchange.getRequest().mutate().header("user_id", oauthDto.getSubject()).build();
+        exchange.getRequest().mutate().header("user-id", oauthDto.getSubject()).header("user_id", oauthDto.getSubject()).build();
     }
 
     private Mono<Void> onError(ServerWebExchange exchange, String message, HttpStatus httpStatus) {
