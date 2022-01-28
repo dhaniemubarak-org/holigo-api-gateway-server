@@ -91,6 +91,12 @@ public class RouteConfig {
                                                                 "/api/v1/postpaid/INS/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-postpaid-insurance-service"))
+                                .route("holigo-postpaid-internet-service", r -> r
+                                                .path("/api/v1/postpaid/NETV/products**",
+                                                                "/api/v1/postpaid/NETV/fare",
+                                                                "/api/v1/postpaid/NETV/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-postpaid-internet-service"))
                                 .route("holigo-postpaid-creditcard-service", r -> r
                                                 .path("/api/v1/postpaid/CC/products**",
                                                                 "/api/v1/postpaid/CC/fare",
