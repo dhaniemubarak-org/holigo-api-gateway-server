@@ -124,6 +124,10 @@ public class RouteConfig {
                                                                 "/api/v1/payments/**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-payment-service"))
+                                .route("holigo-faq-service",
+                                                r -> r.path("/api/v1/faq**", "/api/v1/faq/**",
+                                                                "/api/v1/faq/{topicId}**", "/api/v1/faq/{topicId}/**")
+                                                                .uri("lb://holigo-faq-service"))
                                 .build();
         }
 }
