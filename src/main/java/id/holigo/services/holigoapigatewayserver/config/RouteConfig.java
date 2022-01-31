@@ -126,13 +126,13 @@ public class RouteConfig {
                                                                 .uri("lb://holigo-payment-service"))
                                 .route("holigo-faq-service",
                                                 r -> r.path("/api/v1/faq**", "/api/v1/faq/**",
-                                                                "/api/v1/faq/**/question**",
+                                                                "/api/v1/faq/**",
                                                                 "/api/v1/faq/prepaid**", 
                                                                 "/api/v1/faq/postpaid**",
                                                                 "/api/v1/faq/topic/**",
                                                                 "/api/v1/faq/question/**",
-                                                                "/api/v1/faq/topic/**/delete**",
-                                                                "/api/v1/faq/question/**/delete**")
+                                                                "/api/v1/faq/topic/**",
+                                                                "/api/v1/faq/question/**")
                                                                 .uri("lb://holigo-faq-service"))
                                 .build();
         }
