@@ -127,12 +127,10 @@ public class RouteConfig {
                                 .route("holigo-faq-service",
                                                 r -> r.path("/api/v1/faq**", "/api/v1/faq/**",
                                                                 "/api/v1/faq/**",
-                                                                "/api/v1/faq/prepaid**", 
+                                                                "/api/v1/faq/prepaid**",
                                                                 "/api/v1/faq/postpaid**",
-                                                                "/api/v1/faq/topic/**",
                                                                 "/api/v1/faq/question/**",
-                                                                "/api/v1/faq/topic/**",
-                                                                "/api/v1/faq/question/**")
+                                                                "/api/v1/faq/topic/**")
                                                                 .uri("lb://holigo-faq-service"))
                                 .build();
         }
