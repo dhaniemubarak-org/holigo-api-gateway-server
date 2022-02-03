@@ -137,6 +137,7 @@ public class RouteConfig {
                                                                 "/api/v1/userbank/**",
                                                                 "/api/v1/userbank/list**",
                                                                 "/api/v1/userbank/delete/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-user-bank-account-service"))
                                 .build();
         }
