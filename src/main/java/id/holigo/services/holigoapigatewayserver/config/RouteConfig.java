@@ -133,10 +133,10 @@ public class RouteConfig {
                                                                 "/api/v1/faq/topic/**")
                                                                 .uri("lb://holigo-faq-service"))
                                 .route("holigo-user-bank-account-service",
-                                                r -> r.path("/api/v1/listbank**", "/api/v1/userbank**",
-                                                                "/api/v1/userbank/**",
-                                                                "/api/v1/userbank/list**",
-                                                                "/api/v1/userbank/delete/**")
+                                                r -> r.path("/api/v1/listBank**", "/api/v1/userBank**",
+                                                                "/api/v1/userBank/**",
+                                                                "/api/v1/userBank/list**",
+                                                                "/api/v1/userBank/delete/**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-user-bank-account-service"))
                                 .build();
