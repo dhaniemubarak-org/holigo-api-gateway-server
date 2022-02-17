@@ -139,6 +139,8 @@ public class RouteConfig {
                                                                 "/api/v1/userBank/delete/**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-user-bank-account-service"))
+                                .route("holigo-invoice-service",
+                                                r -> r.path("/web/v1/invoice/**").uri("lb://holigo-invoice-service"))
                                 .route("hotel-external-service",
                                                 r -> r.path("/api/v1/tiket/hotels**", "/api/v1/tiket/rooms**",
                                                                 "/api/v1/traveloka/hotels**",
