@@ -146,6 +146,9 @@ public class RouteConfig {
                                                                 "/api/v1/traveloka/hotels**",
                                                                 "/api/v1/traveloka/rooms**")
                                                                 .uri("lb://hotel-external-service"))
+                                .route("holigo-referral-service",
+                                                r -> r.path("/api/v1/userReferral**")
+                                                                .uri("lb://holigo-user-service"))
                                 .build();
         }
 }
