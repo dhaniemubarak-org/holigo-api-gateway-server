@@ -149,6 +149,9 @@ public class RouteConfig {
                                 .route("holigo-referral-service",
                                                 r -> r.path("/api/v1/userReferral**")
                                                                 .uri("lb://holigo-user-service"))
+                                .route("holigo-destination-service",
+                                                r -> r.path("/api/v1/destinations**", "/api/v1/airports")
+                                                                .uri("lb://holigo-destination-service"))
                                 .build();
         }
 }
