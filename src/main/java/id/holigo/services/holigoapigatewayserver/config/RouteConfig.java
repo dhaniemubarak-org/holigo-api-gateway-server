@@ -152,6 +152,14 @@ public class RouteConfig {
                                 .route("holigo-destination-service",
                                                 r -> r.path("/api/v1/destinations**", "/api/v1/airports**")
                                                                 .uri("lb://holigo-destination-service"))
+                                .route("holigo-live-chat-service",
+                                                r -> r.path("/api/v1/chat/**", "/api/v1/rooms/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-live-chat-service"))
+                                .route("holigo-live-chat-stomp-service",
+                                                r -> r.path("/websocket-chat**", "/app/messages**",
+                                                                "/chat/messages/**")
+                                                                .uri("lb://holigo-live-chat-service"))
                                 .build();
         }
 }
