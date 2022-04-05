@@ -160,6 +160,11 @@ public class RouteConfig {
                                                 r -> r.path("/websocket-chat**", "/app/messages**",
                                                                 "/chat/messages/**")
                                                                 .uri("lb://holigo-live-chat-service"))
+                                .route("holigo-holiclub-service",
+                                                r -> r.path("/api/v1/holiclub", "/api/v1/holiclub**",
+                                                                "api/v1/holiclub/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-holiclub-service"))
                                 .build();
         }
 }
