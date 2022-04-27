@@ -175,11 +175,11 @@ public class RouteConfig {
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-point-service"))
                 .route("holigo-passenger-service",
-                        r -> r.path("/api/v1/passengers**")
+                        r -> r.path("/api/v1/passengers**", "/api/v1/passengers/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-passenger-service"))
                 .route("holigo-billing-data-service",
-                        r -> r.path("/api/v1/billingData**")
+                        r -> r.path("/api/v1/billingData**", "/api/v1/billingData/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-billing-data-service"))
                 .build();
