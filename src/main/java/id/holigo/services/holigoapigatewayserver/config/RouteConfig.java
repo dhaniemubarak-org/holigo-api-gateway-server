@@ -186,7 +186,6 @@ public class RouteConfig {
                                                 r -> r.path("/api/v1/hotels/populars**",
                                                                 "/api/v1/hotels/popularDestinations**",
                                                                 "/api/v1/hotels/available/**",
-                                                                "/api/v1/hotels/available/**/rooms**",
                                                                 "/api/v1/hotels/fare**", "/api/v1/hotels/book**",
                                                                 "/api/v1/hotel/available**",
                                                                 "/api/v1/hotels/jobs/**")
