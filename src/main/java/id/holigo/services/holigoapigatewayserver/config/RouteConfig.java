@@ -130,7 +130,10 @@ public class RouteConfig {
                                                                 "/api/v1/faq/prepaid**",
                                                                 "/api/v1/faq/postpaid**",
                                                                 "/api/v1/faq/question/**",
-                                                                "/api/v1/faq/topic/**")
+                                                                "/api/v1/faq/topic/**",
+                                                                "/api/v1/faq/search/**",
+                                                                "/api/v1/faq/popular/**",
+                                                                "/api/v1/faq/question/**")
                                                                 .uri("lb://holigo-faq-service"))
                                 .route("holigo-user-bank-account-service",
                                                 r -> r.path("/api/v1/listBank**", "/api/v1/userBank**",
@@ -188,9 +191,15 @@ public class RouteConfig {
                                                                 "/api/v1/hotels/available/**",
                                                                 "/api/v1/hotels/fare**", "/api/v1/hotels/book**",
                                                                 "/api/v1/hotel/available**",
-                                                                "/api/v1/hotels/jobs/**")
+                                                                "/api/v1/hotels/jobs/**",
+                                                                "/api/v1/hotels/calendar**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-service"))
+                                .route("holigo-hotel-review-service",
+                                                r -> r.path("/api/v1/hotelReview/**", "/api/v1/hotelReview/images/**",
+                                                                "/api/v1/hotelReview/**", "/api/v1/hotelReview**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-hotel-review-service"))
                                 .build();
         }
 }
