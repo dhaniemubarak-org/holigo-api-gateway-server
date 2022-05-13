@@ -161,8 +161,8 @@ public class RouteConfig {
                                 .uri("lb://holigo-live-chat-service"))
                 .route("holigo-live-chat-stomp-service",
                         r -> r.path(
-                                "/websocket-chat**",
-                                "/websocket-chat/**",
+                                "/wsholigo**",
+                                "/wsholigo/**",
                                 "/app/messages**",
                                 "/chat/messages/**"
                         ).uri("lb://holigo-live-chat-service"))
