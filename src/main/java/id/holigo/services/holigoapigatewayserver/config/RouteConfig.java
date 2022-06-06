@@ -161,12 +161,12 @@ public class RouteConfig {
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-live-chat-service"))
                                 // .route("holigo-live-chat-stomp-service",
-                                //                 r -> r.path(
-                                //                                 "/wsholigo**",
-                                //                                 "/wsholigo/**",
-                                //                                 "/app/messages**",
-                                //                                 "/chat/messages/**")
-                                //                                 .uri("lb://holigo-live-chat-service"))
+                                // r -> r.path(
+                                // "/wsholigo**",
+                                // "/wsholigo/**",
+                                // "/app/messages**",
+                                // "/chat/messages/**")
+                                // .uri("lb://holigo-live-chat-service"))
                                 .route("holigo-holiclub-service",
                                                 r -> r.path("/api/v1/holiclub", "/api/v1/holiclub**",
                                                                 "api/v1/holiclub/**")
@@ -196,15 +196,20 @@ public class RouteConfig {
                                                                 "/api/v1/hotels/fare**", "/api/v1/hotels/book**",
                                                                 "/api/v1/hotel/available**",
                                                                 "/api/v1/hotels/jobs/**",
-                                                                "/api/v1/hotels/calendar**",
-                                                                "/api/v1/stories**")
+                                                                "/api/v1/hotels/calendar**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-service"))
                                 .route("holigo-hotel-review-service",
                                                 r -> r.path("/api/v1/hotel/review/**", "/api/v1/hotel/review/images/**",
-                                                                "/api/v1/hotel/review/ratings/**", "/api/v1/hotel/review**")
+                                                                "/api/v1/hotel/review/ratings/**",
+                                                                "/api/v1/hotel/review**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-review-service"))
+                                .route("holigo-story-service",
+                                                r -> r.path("/api/v1/stories**", "/api/v1/stories/uploadVideo/**",
+                                                                "/api/v1/stories/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-story-service"))
                                 .build();
         }
 }
