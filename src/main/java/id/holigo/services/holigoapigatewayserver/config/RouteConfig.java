@@ -104,7 +104,7 @@ public class RouteConfig {
                         .filters(f -> f.filter(authorizationFilter))
                         .uri("lb://holigo-postpaid-creditcard-service"))
                 .route("holigo-product-service",
-                        r -> r.path("/api/v1/products**", "/api/v1/products/**")
+                        r -> r.path("/api/v1/products**", "/api/v1/products/**", "/api/v1/products/clearManager**")
                                 .uri("lb://holigo-product-service"))
                 .route("holigo-product-service-prepaid",
                         r -> r.path("/api/v1/prepaid**")
