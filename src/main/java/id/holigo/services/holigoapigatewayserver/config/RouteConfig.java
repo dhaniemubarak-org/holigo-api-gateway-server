@@ -205,6 +205,16 @@ public class RouteConfig {
                                                                 "/api/v1/hotel/review/ratings/**", "/api/v1/hotel/review**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-review-service"))
+                                .route("holigo-airlines-service",
+                                        r -> r.path("/api/v1/airlines/availabilities**", "/api/v1/airlines/fare",
+                                                        "/api/v1/airlines/fare/**", "/api/v1/airlines/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-airlines-service"))
+                                .route("holigo-train-service",
+                                        r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fare",
+                                                        "/api/v1/train/fare/**", "/api/v1/train/book")
+                                                .filters(f -> f.filter(authorizationFilter))
+                                                .uri("lb://holigo-train-service"))
                                 .build();
         }
 }
