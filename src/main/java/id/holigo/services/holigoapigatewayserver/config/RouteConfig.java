@@ -154,7 +154,7 @@ public class RouteConfig {
                                                                 .uri("lb://holigo-user-service"))
                                 .route("holigo-destination-service",
                                                 r -> r.path("/api/v1/destinations**", "/api/v1/airports**",
-                                                                "/api/v1/destinations/**", "/api/v1/stations**", "/api/v1/countries**", "api/v1/countries/**")
+                                                                "/api/v1/destinations/**")
                                                                 .uri("lb://holigo-destination-service"))
                                 .route("holigo-live-chat-service",
                                                 r -> r.path("/api/v1/chat/**", "/api/v1/rooms/**")
