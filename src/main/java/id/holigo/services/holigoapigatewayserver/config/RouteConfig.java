@@ -206,8 +206,8 @@ public class RouteConfig {
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-review-service"))
                                 .route("holigo-airlines-service",
-                                        r -> r.path("/api/v1/airlines/availabilities**", "/api/v1/airlines/fare",
-                                                        "/api/v1/airlines/fare/**", "/api/v1/airlines/book")
+                                        r -> r.path("/api/v1/airlines/availabilities**", "/api/v1/airlines/fares",
+                                                        "/api/v1/airlines/fares/**", "/api/v1/airlines/book")
                                                 .filters(f -> f.filter(authorizationFilter))
                                                 .uri("lb://holigo-airlines-service"))
                                 .route("holigo-product-service",
