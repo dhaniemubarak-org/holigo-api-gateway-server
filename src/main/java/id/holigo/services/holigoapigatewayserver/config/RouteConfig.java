@@ -161,12 +161,12 @@ public class RouteConfig {
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-live-chat-service"))
                                 // .route("holigo-live-chat-stomp-service",
-                                //                 r -> r.path(
-                                //                                 "/wsholigo**",
-                                //                                 "/wsholigo/**",
-                                //                                 "/app/messages**",
-                                //                                 "/chat/messages/**")
-                                //                                 .uri("lb://holigo-live-chat-service"))
+                                // r -> r.path(
+                                // "/wsholigo**",
+                                // "/wsholigo/**",
+                                // "/app/messages**",
+                                // "/chat/messages/**")
+                                // .uri("lb://holigo-live-chat-service"))
                                 .route("holigo-holiclub-service",
                                                 r -> r.path("/api/v1/holiclub", "/api/v1/holiclub**",
                                                                 "api/v1/holiclub/**")
@@ -202,27 +202,35 @@ public class RouteConfig {
                                                                 .uri("lb://holigo-hotel-service"))
                                 .route("holigo-hotel-review-service",
                                                 r -> r.path("/api/v1/hotel/review/**", "/api/v1/hotel/review/images/**",
-                                                                "/api/v1/hotel/review/ratings/**", "/api/v1/hotel/review**")
+                                                                "/api/v1/hotel/review/ratings/**",
+                                                                "/api/v1/hotel/review**")
                                                                 .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-hotel-review-service"))
                                 .route("holigo-airlines-service",
-                                        r -> r.path("/api/v1/airlines/availabilities**", "/api/v1/airlines/fares",
-                                                        "/api/v1/airlines/fares/**", "/api/v1/airlines/book")
-                                                .filters(f -> f.filter(authorizationFilter))
-                                                .uri("lb://holigo-airlines-service"))
+                                                r -> r.path("/api/v1/airlines/availabilities**",
+                                                                "/api/v1/airlines/fares",
+                                                                "/api/v1/airlines/fares/**", "/api/v1/airlines/book")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-airlines-service"))
                                 .route("holigo-product-service",
-                                        r -> r.path("/api/v1/products**", "/api/v1/products/**", "/api/v1/products/clearManager**")
-                                                .uri("lb://holigo-product-service"))
+                                                r -> r.path("/api/v1/products**", "/api/v1/products/**",
+                                                                "/api/v1/products/clearManager**")
+                                                                .uri("lb://holigo-product-service"))
                                 .route("holigo-train-service",
-                                        r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fare",
-                                                        "/api/v1/train/fare/**", "/api/v1/train/book")
-                                                .filters(f -> f.filter(authorizationFilter))
-                                                .uri("lb://holigo-train-service"))
-                               .route("holigo-story-service",
-                                       r -> r.path("/api/v1/stories**", "/api/v1/stories/uploadVideo/**",
-                                                       "/api/v1/stories/**")
-                                               .filters(f -> f.filter(authorizationFilter))
-                                               .uri("lb://holigo-story-service"))
+                                                r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fare",
+                                                                "/api/v1/train/fare/**", "/api/v1/train/book")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-train-service"))
+                                .route("holigo-story-service",
+                                                r -> r.path("/api/v1/stories**", "/api/v1/stories/uploadVideo/**",
+                                                                "/api/v1/stories/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-story-service"))
+                                .route("holigo-collection-service",
+                                                r -> r.path("/api/v1/collection/favorite**",
+                                                                "/api/v1/collection/favorite/**")
+                                                                .filters(f -> f.filter(authorizationFilter))
+                                                                .uri("lb://holigo-collection-service"))
                                 .build();
         }
 }
