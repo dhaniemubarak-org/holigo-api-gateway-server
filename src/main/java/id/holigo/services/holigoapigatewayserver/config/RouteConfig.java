@@ -233,7 +233,6 @@ public class RouteConfig {
                                 .route("holigo-config-service",
                                                 r -> r.path("/api/v1/config/**",
                                                                 "/api/v1/config**")
-                                                                .filters(f -> f.filter(authorizationFilter))
                                                                 .uri("lb://holigo-config-service"))
                                 .build();
         }
