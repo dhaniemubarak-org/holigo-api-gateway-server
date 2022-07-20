@@ -244,11 +244,6 @@ public class RouteConfig {
                                         "/api/v1/emailVerifications/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-email-service"))
-                .route("holigo-email-service",
-                        r -> r.path("/api/v1/emailVerifications**",
-                                        "/api/v1/emailVerifications/**")
-                                .filters(f -> f.filter(authorizationFilter))
-                                .uri("lb://holigo-email-service"))
                 .route("holigo-email-service-verification",
                         r -> r.path("emailVerifications**")
                                 .uri("lb://holigo-email-service"))
