@@ -159,7 +159,7 @@ public class RouteConfig {
                 .route("holigo-destination-service",
                         r -> r.path("/api/v1/destinations**", "/api/v1/airports**",
                                         "/api/v1/destinations/**", "/api/v1/search**",
-                                        "/api/v1/search/**", "/api/v1/stations**", "/api/v1/countries/**" )
+                                        "/api/v1/search/**", "/api/v1/stations**", "/api/v1/countries/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-destination-service"))
                 .route("holigo-live-chat-service",
@@ -214,7 +214,9 @@ public class RouteConfig {
                 .route("holigo-airlines-service",
                         r -> r.path("/api/v1/airlines/availabilities**",
                                         "/api/v1/airlines/fares",
-                                        "/api/v1/airlines/fares/**", "/api/v1/airlines/book")
+                                        "/api/v1/airlines/fares/**",
+                                        "/api/v1/airlines/book",
+                                        "/api/v1/airlines/transactions/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-airlines-service"))
                 .route("holigo-product-service",
