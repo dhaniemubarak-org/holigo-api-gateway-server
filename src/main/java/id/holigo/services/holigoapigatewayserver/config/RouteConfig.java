@@ -248,7 +248,7 @@ public class RouteConfig {
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-email-service"))
                 .route("holigo-email-service-verification",
-                        r -> r.path("emailVerifications**")
+                        r -> r.path("/emailVerifications**")
                                 .uri("lb://holigo-email-service"))
                 .route("holigo-upcoming-schedule-service",
                         r -> r.path("/api/v1/upcomingSchedule**")
