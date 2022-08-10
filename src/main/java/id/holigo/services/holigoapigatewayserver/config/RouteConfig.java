@@ -156,11 +156,15 @@ public class RouteConfig {
                 .route("holigo-referral-service",
                         r -> r.path("/api/v1/userReferral**")
                                 .uri("lb://holigo-user-service"))
-                .route("holigo-destination-service",
-                        r -> r.path("/api/v1/destinations**", "/api/v1/airports**",
-                                        "/api/v1/destinations/**", "/api/v1/search**",
-                                        "/api/v1/search/**", "/api/v1/stations**", "/api/v1/countries/**")
+                .route("holigo-destination-service-search",
+                        r -> r.path("/api/v1/search/**")
                                 .filters(f -> f.filter(authorizationFilter))
+                                .uri("lb://holigo-destination-service"))
+                .route("holigo-destination-service",
+                        r -> r.path("/api/v1/destinations**",
+                                        "/api/v1/airports**",
+                                        "/api/v1/stations**",
+                                        "/api/v1/countries/**")
                                 .uri("lb://holigo-destination-service"))
                 .route("holigo-live-chat-service",
                         r -> r.path("/api/v1/chat/**", "/api/v1/rooms/**")
