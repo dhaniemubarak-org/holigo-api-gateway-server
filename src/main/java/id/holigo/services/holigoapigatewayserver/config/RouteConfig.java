@@ -170,16 +170,9 @@ public class RouteConfig {
                         r -> r.path("/api/v1/chat/**", "/api/v1/rooms/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-live-chat-service"))
-                // .route("holigo-live-chat-stomp-service",
-                // r -> r.path(
-                // "/wsholigo**",
-                // "/wsholigo/**",
-                // "/app/messages**",
-                // "/chat/messages/**")
-                // .uri("lb://holigo-live-chat-service"))
                 .route("holigo-holiclub-service",
                         r -> r.path("/api/v1/holiclub", "/api/v1/holiclub**",
-                                        "api/v1/holiclub/**")
+                                        "api/v1/holiclub/**", "/api/v1/userClubHistory**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-holiclub-service"))
                 .route("holigo-coupon-service",
