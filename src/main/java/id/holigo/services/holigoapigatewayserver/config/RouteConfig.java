@@ -177,7 +177,7 @@ public class RouteConfig {
                                 .uri("lb://holigo-holiclub-service"))
                 .route("holigo-coupon-service",
                         r -> r.path("/api/v1/coupons", "/api/v1/coupons**",
-                                        "/api/v1/coupons/**")
+                                        "/api/v1/coupons/**", "/api/v1/applyCoupon**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-coupon-service"))
                 .route("holigo-point-service",
