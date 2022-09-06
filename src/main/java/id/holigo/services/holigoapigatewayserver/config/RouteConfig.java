@@ -254,6 +254,10 @@ public class RouteConfig {
                         r -> r.path("/api/v1/upcomingSchedule**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-upcoming-schedule-service"))
+                .route("holigo-push-notification-service",
+                        r -> r.path("/api/v1/pushNotifications")
+                                .filters(f -> f.filter(authorizationFilter))
+                                .uri("lb://holigo-push-notification-service"))
                 .build();
     }
 }
