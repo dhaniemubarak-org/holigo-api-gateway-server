@@ -29,9 +29,6 @@ public class RouteConfig {
                                 .uri("lb://holigo-otp-service"))
                 .route("holigo-oauth-service-login",
                         r -> r.path("/api/v1/login").uri("lb://holigo-oauth-service"))
-                .route("holigo-oauth-service-test",
-                        r -> r.path("/api/v1/test").filters(f -> f.filter(authorizationFilter))
-                                .uri("lb://holigo-oauth-service"))
                 .route("holigo-user-service",
                         r -> r.path("/api/v1/users", "/api/v1/users/**")
                                 .filters(f -> f.filter(authorizationFilter))
@@ -259,7 +256,7 @@ public class RouteConfig {
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-push-notification-service"))
                 .route("holigo-account-balance-service",
-                        r -> r.path("/api/v1/accountStatements**", "/api/v1/accountBalance")
+                        r -> r.path("/api/v1/accountStatements**", "/api/v1/accountBalance*")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-account-balance-service"))
                 .build();
