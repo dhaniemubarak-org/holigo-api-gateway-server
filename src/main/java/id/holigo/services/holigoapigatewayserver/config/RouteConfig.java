@@ -194,6 +194,8 @@ public class RouteConfig {
                                 .uri("lb://holigo-billing-data-service"))
                 .route("holigo-hotel-service",
                         r -> r.path("/api/v1/hotels/populars**",
+                                        "/api/v1/hotels/type",
+                                        "/api/v1/hotels/facility",
                                         "/api/v1/hotels/popularDestinations**",
                                         "/api/v1/hotels/available/**",
                                         "/api/v1/hotels/fare**", "/api/v1/hotels/book**",
