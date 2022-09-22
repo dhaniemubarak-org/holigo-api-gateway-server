@@ -261,6 +261,10 @@ public class RouteConfig {
                         r -> r.path("/api/v1/accountStatements**", "/api/v1/accountBalance**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-account-balance-service"))
+                .route("holigo-pin-service",
+                        r -> r.path("/api/v1/pin/validate", "/api/v1/pin/users/**")
+                                .filters(f -> f.filter(authorizationFilter))
+                                .uri("lb://holigo-pin-service"))
                 .build();
     }
 }
