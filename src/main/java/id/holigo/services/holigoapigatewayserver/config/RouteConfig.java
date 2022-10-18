@@ -34,7 +34,7 @@ public class RouteConfig {
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-user-service"))
                 .route("holigo-guest-service",
-                        r -> r.path("/api/v1/guests").uri("lb://holigo-user-service"))
+                        r -> r.path("/api/v1/guests").uri("lb://holigo-guest-service"))
                 .route("holigo-prepaid-pulsa-service", r -> r
                         .path("/api/v1/prepaid/pulsa/products**", "/api/v1/prepaid/pulsa/fare",
                                 "/api/v1/prepaid/pulsa/book")
