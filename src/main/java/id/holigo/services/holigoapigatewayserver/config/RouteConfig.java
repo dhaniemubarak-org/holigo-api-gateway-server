@@ -62,6 +62,12 @@ public class RouteConfig {
                                 "/api/v1/prepaid/GAME/book")
                         .filters(f -> f.filter(authorizationFilter))
                         .uri("lb://holigo-prepaid-games-service"))
+                .route("holigo-prepaid-streaming-service", r -> r
+                        .path("/api/v1/prepaid/STREAMING**", "/api/v1/prepaid/STREAMING/products**",
+                                "/api/v1/prepaid/STREAMING/fare",
+                                "/api/v1/prepaid/STREAMING/book")
+                        .filters(f -> f.filter(authorizationFilter))
+                        .uri("lb://holigo-prepaid-streaming-service"))
                 .route("holigo-postpaid-pdam-service", r -> r
                         .path("/api/v1/postpaid/PAM**", "/api/v1/postpaid/PAM/products**",
                                 "/api/v1/postpaid/PAM/fare",
@@ -104,6 +110,12 @@ public class RouteConfig {
                                 "/api/v1/postpaid/CC/book")
                         .filters(f -> f.filter(authorizationFilter))
                         .uri("lb://holigo-postpaid-creditcard-service"))
+                .route("holigo-postpaid-gas-service", r -> r
+                        .path("/api/v1/postpaid/GAS/products**",
+                                "/api/v1/postpaid/GAS/fare",
+                                "/api/v1/postpaid/GAS/book")
+                        .filters(f -> f.filter(authorizationFilter))
+                        .uri("lb://holigo-postpaid-gas-service"))
                 .route("holigo-product-service-prepaid",
                         r -> r.path("/api/v1/prepaid**")
                                 .filters(f -> f.filter(authorizationFilter))
