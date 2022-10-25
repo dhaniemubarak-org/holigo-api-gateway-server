@@ -270,7 +270,8 @@ public class RouteConfig {
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-push-notification-service"))
                 .route("holigo-account-balance-service",
-                        r -> r.path("/api/v1/accountStatements**", "/api/v1/accountBalance**")
+                        r -> r.path("/api/v1/accountStatements**", "/api/v1/accountBalance**",
+                                        "/api/v1/creditAccountStatement*")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-account-balance-service"))
                 .route("holigo-pin-service",
