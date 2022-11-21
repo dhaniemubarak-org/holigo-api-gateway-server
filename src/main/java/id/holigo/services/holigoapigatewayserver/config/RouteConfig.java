@@ -242,8 +242,8 @@ public class RouteConfig {
                                         "/api/v1/products/clearManager**")
                                 .uri("lb://holigo-product-service"))
                 .route("holigo-train-service",
-                        r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fare",
-                                        "/api/v1/train/fare/**", "/api/v1/train/book")
+                        r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fares",
+                                        "/api/v1/train/fares/**", "/api/v1/train/book")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-train-service"))
                 .route("holigo-story-service",
