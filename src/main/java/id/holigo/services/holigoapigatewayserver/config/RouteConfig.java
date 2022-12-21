@@ -116,6 +116,13 @@ public class RouteConfig {
                                 "/api/v1/postpaid/GAS/book")
                         .filters(f -> f.filter(authorizationFilter))
                         .uri("lb://holigo-postpaid-gas-service"))
+                .route("holigo-postpaid-banktransfer-service", r -> r
+                        .path("/api/v1/postpaid/TF/product**",
+                                "/api/v1/postpaid/TF/fare",
+                                "/api/v1/postpaid/TF/book",
+                                "/api/v1/postpaid/TF**")
+                        .filters(f -> f.filter(authorizationFilter))
+                        .uri("lb://holigo-postpaid-banktransfer-service"))
                 .route("holigo-product-service-prepaid",
                         r -> r.path("/api/v1/prepaid**")
                                 .filters(f -> f.filter(authorizationFilter))
@@ -236,7 +243,7 @@ public class RouteConfig {
                                 .uri("lb://holigo-product-service"))
                 .route("holigo-train-service",
                         r -> r.path("/api/v1/train/availabilities**", "/api/v1/train/fares",
-                                        "/api/v1/train/fares/**", "/api/v1/train/book")
+                                        "/api/v1/train/fares/**", "/api/v1/train/book", "/api/v1/train/transactions/**")
                                 .filters(f -> f.filter(authorizationFilter))
                                 .uri("lb://holigo-train-service"))
                 .route("holigo-story-service",
