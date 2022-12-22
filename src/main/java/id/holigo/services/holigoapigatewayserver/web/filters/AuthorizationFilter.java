@@ -18,47 +18,48 @@ import org.springframework.web.server.ServerWebExchange;
 import id.holigo.services.common.model.OauthDto;
 import id.holigo.services.holigoapigatewayserver.services.OauthService;
 import id.holigo.services.holigoapigatewayserver.web.validators.RouterValidator;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 @RefreshScope
 @Component
 public class AuthorizationFilter implements GatewayFilter {
-    @Autowired
+
     private RouterValidator routerValidator;
 
-    @Autowired
     private OauthService oauthService;
+
+    @Autowired
+    public void setRouterValidator(RouterValidator routerValidator) {
+        this.routerValidator = routerValidator;
+    }
+
+    @Autowired
+    public void setOauthService(OauthService oauthService) {
+        this.oauthService = oauthService;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
         if (routerValidator.isSecure.test(request)) {
-            log.info("Filter is running");
             if (this.isAuthMissing(request)) {
                 return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
             }
 
-            OauthDto oauthDto = new OauthDto();
+            OauthDto oauthDto;
             final String token = this.getAuthHeader(request);
-            log.info("Token in filter -> {}", token);
             try {
                 oauthDto = oauthService.getOauth(token);
                 if (!oauthDto.isValid()) {
-                    log.info("token invalid!");
                     return this.onError(exchange, "Unauthorization", HttpStatus.UNAUTHORIZED);
                 }
             } catch (JsonProcessingException | JMSException e) {
-                log.info("invalid catch");
                 return this.onError(exchange, "Unauthorization", HttpStatus.UNAUTHORIZED);
             }
-            log.info("Exchange is mutate ...");
             this.populateRequestWithHeaders(exchange, oauthDto);
             return chain.filter(exchange);
         }
-        log.info("Open");
         return chain.filter(exchange);
     }
 
@@ -77,9 +78,6 @@ public class AuthorizationFilter implements GatewayFilter {
         String token = null;
         if (authorizationHeader.startsWith("Bearer ")) {
             token = authorizationHeader.substring("Bearer ".length());
-            log.info("Extract token : {}", token);
-        } else {
-            log.info("Bearer not detected");
         }
         return token;
     }
